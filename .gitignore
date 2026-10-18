@@ -4,9 +4,11 @@ __pycache__/
 *$py.class
 
 
-# data
-raw_data/
-cleaned_data/
+# data: keep the folders (via .gitkeep) but never the data files in them
+raw_data/*
+!raw_data/.gitkeep
+cleaned_data/*
+!cleaned_data/.gitkeep
 
 # documents
 docs/
