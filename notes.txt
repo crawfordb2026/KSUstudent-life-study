@@ -1,0 +1,32 @@
+Files are in cleaned_data/, one per participant (rsp_id) at 1-second, 1-minute or
+5-minute resolution, made by clean_garmin.py (run it with --help for column definitions).
+NA always means unknown, never zero. The status column says why a row is missing.
+
+
+THINGS TO KNOW
+1. The watch only records while connected to the phone, so there are large gaps.
+   Share of the study week with live data: 78118 60%, 78087 17%, 78083 11%, 78089 2%.
+2. Steps taken while disconnected arrive in one batch when the watch reconnects. They
+   are counted in unplaced_steps but have no time attached.
+   steps + unplaced_steps for a day = the watch's own total for that day.
+3. If the watch was disconnected at midnight, that day's last steps never arrived, so
+   most daily totals are lower bounds. Complete days: 78118 Nov 21, 23, 24;
+   78087 Nov 4; 78083 Nov 1.
+4. Step timing is only accurate to within about a minute, because the watch sometimes
+   credits steps in batches. Use the 1- or 5-minute files for time-of-day work.
+5. Heart rate is NA in 10-20% of connected time, mostly when the watch was not being
+   worn (e.g. overnight on a nightstand).
+6. Times are US Eastern. Clocks fell back on Nov 2, 2025, so sort by timestamp_utc.
+7. One export (ex5) was not processed. It is a different format and appears to hold
+   two recordings a year apart (Oct 2024 and Nov 2025). Needs clarification.
+
+
+WHAT EACH PARTICIPANT SUPPORTS
+- 78118: Yes. Nov 21-25 cover 52-98% of waking hours (8am-midnight), enough for
+  activity patterns over the day at 1-5 minute resolution. 3 complete daily totals.
+- 78087, 78083: Limited. Waking-hour coverage is mostly under 30%, too little for
+  patterns over the day. Daily totals are usable as lower bounds.
+- 78089: Daily totals (lower bounds) only. About 3 hours of live data all week.
+- Overall: daily step counts can be compared across all four (with caveat 3).
+  Patterns within a day are realistic only for 78118. Future participants need help
+  keeping the watch connected to the phone.
