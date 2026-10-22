@@ -20,5 +20,5 @@ What goes in the output (steps, heart rate, or both) and the row size (1 second,
 5 minutes) are set in the `SETTINGS` block at the top of `clean_garmin.py`.
 
 Output goes to `cleaned_data/<rsp_id>_1s.csv`, `_1min.csv` or `_5min.csv` (or pass `-o path.csv`). Missing data is written
-as `NA` and the `status` column says why. Run `clean_garmin.py --help` for the column
+as `-1` and the `status` column says why. Run `clean_garmin.py --help` for the column
 definitions and options, and see `notes.txt` for known data issues.

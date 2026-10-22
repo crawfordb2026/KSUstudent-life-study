@@ -37,14 +37,14 @@ Output columns, BIN_SIZE '1s' (per second):
 
 Status values:
     ok             watch connected; steps_this_second is real (0 means no steps)
-    no_data        watch sent nothing; steps_today, steps_this_second and hr are NA
+    no_data        watch sent nothing; steps_today, steps_this_second and hr are -1
     steps_unknown  watch is sending again after a gap, but hasn't re-sent the
-                   step counter yet; step columns are NA (hr may be present)
+                   step counter yet; step columns are -1 (hr may be present)
     catchup        the step counter jumped after a gap, at the start of the
                    recording, or after the watch restarted; the jump is in
-                   unplaced_steps and steps_this_second is NA
+                   unplaced_steps and steps_this_second is -1
 Without steps, only ok and no_data are used (watch connected or not).
-hr can be NA on an ok row: the watch was connected but had no pulse reading,
+hr can be -1 on an ok row: the watch was connected but had no pulse reading,
 usually because it wasn't being worn.
 
 Output columns, BIN_SIZE '1min' and '5min':
@@ -64,12 +64,13 @@ Output columns, BIN_SIZE '1min' and '5min':
 Binned status values (with steps: seconds with known steps; without: connected seconds):
     ok        every second in the bin is covered
     partial   some seconds are covered
-    missing   no second is covered; steps, steps_today and hr are NA
+    missing   no second is covered; steps, steps_today and hr are -1
 
 Summing steps + unplaced_steps over a local_date gives the watch's daily total
-at every bin size.
+at every bin size (after excluding the -1s).
 
-Missing values are written as NA (change with --na-rep). NA never means zero.
+Missing values are written as -1 (change with --na-rep). Real values are never
+negative, so -1 always means missing; filter it out before summing or averaging.
 """
 
 import argparse
@@ -321,7 +322,7 @@ def main() -> None:
                         help='seconds without any record before a stretch counts as no_data (default: 150)')
     parser.add_argument('--hr-hold', type=int, default=5,
                         help='seconds to carry a heart-rate reading forward between beats (default: 5)')
-    parser.add_argument('--na-rep', default='NA', help='text written for missing values (default: NA)')
+    parser.add_argument('--na-rep', default='-1', help='text written for missing values (default: -1)')
     args = parser.parse_args()
     check_settings()
 

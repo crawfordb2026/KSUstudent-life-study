@@ -1,0 +1,54 @@
+
+things to know
+
+1. The watch only records while connected to the phone, so there are large gaps.
+   Share of the study week with live data: 78118 60%, 78087 17%, 78083 11%, 78089 2%.
+
+2. Steps taken while disconnected arrive in one batch when the watch reconnects. They
+   are counted in unplaced_steps but have no time attached.
+   steps + unplaced_steps for a day = the watch's own total for that day.
+
+3. If the watch was disconnected at midnight, that day's last steps never arrived, so
+   most daily totals are lower bounds. Complete days: 78118 Nov 21, 23, 24;
+   78087 Nov 4; 78083 Nov 1.
+
+4. Heart rate is missing (-1) in 10-20% of connected time, mostly when the watch was not being
+   worn (e.g. overnight on a nightstand).
+
+5. One export (ex5) was not processed. It is a different format and appears to hold
+   two recordings a year apart (Oct 2024 and Nov 2025). 
+
+
+
+each student and if their data is usable
+
+steps
+
+- 78118: Yes. Nov 21-25 cover 52-98% of waking hours (8am-midnight), enough for
+  activity patterns over the day at 1-5 minute resolution. 3 complete daily totals.
+- 78087, 78083: Limited. Waking-hour coverage is mostly under 30% (never above 50%),
+  too little for patterns over the day. Daily totals are usable as lower bounds.
+- 78089: Daily totals (lower bounds) only. About 3 hours of live data all week.
+- ex5: Limited, similar to 78087. Waking-hour coverage is 21-51% on Oct 12-18 2024
+  and 31-46% on Nov 8-14 2025; Oct 19-27 2024 is almost empty. No complete daily totals.
+
+- Overall: daily step counts can be compared across everyone (with caveat 3).
+  Patterns within a day are realistic only for 78118.
+
+
+heart rate
+
+- Heart rate needs the watch to be connected and worn, so coverage is a bit below steps.
+- Almost no overnight data: only 78118 has full nights (Nov 22, 24). Sleep or
+  resting heart rate can't be studied for anyone else.
+
+- 78118: Yes, for daytime. Nov 21, 23, 24, 25 cover 51-87% of waking hours.
+
+- 78087, 78083, ex5: Limited. No day has more than 48% of waking hours covered. Fine for
+  heart rate during the stretches that exist (e.g. alongside steps), not full-day patterns.
+
+- 78089: Not usable. About 2.5 hours all week.
+
+- Unlike steps, heart rate has no daily total to fall back on, so low coverage
+  means little usable data.
+
